@@ -28,8 +28,11 @@
 
     // drive stimulus
     initial begin
+        a = 0;
+        b = 0;
+        cin = 0;
         #10;
-        $display("---------- Testing Multiplication ----------");
+        $display("-------------- Testing Adder ---------------");
         $display("NOTE: If no ERROR being printed out, then the test pass.");
         $display("--------------------------------------------");
         repeat (ITER) begin
@@ -48,15 +51,15 @@
 
     task automatic check_result;
         if (expected_cout !== cout) begin
-            $error("Error: Wrong cout result from DUT. %d + %d. Expected: %d, Actual: %d",
-                    a, b, expected_cout, cout);
+            $error("Error: Wrong cout result from DUT. %d + %d + %d. Expected: %d, Actual: %d",
+                    a, b, cin, expected_cout, cout);
         end
         else if (expected_s !== s) begin
-            $error("Error: Wrong s result from DUT. %d + %d. Expected: %d, Actual: %d",
-                    a, b, expected_s, s);
+            $error("Error: Wrong s result from DUT. %d + %d + %d. Expected: %d, Actual: %d",
+                    a, b, cin,expected_s, s);
         end
         else begin
-            if (DEBUG) $display("Check passed. %d + %d = %d", a, b, expected_s);
+            if (DEBUG) $display("Check passed. %d + %d + %d = %d", a, b, cin, expected_s);
         end
 
     endtask
