@@ -11,7 +11,7 @@
 module test_Carry_Select_Adder();
 
     parameter WIDTH = 8;
-    parameter BLOCK = 3;
+    parameter SIZE = 3;
 
     logic [WIDTH-1:0]    a;
     logic [WIDTH-1:0]    b;
@@ -22,7 +22,7 @@ module test_Carry_Select_Adder();
     tb_env #(.WIDTH(WIDTH), .DEBUG(1))
     u_tb_env(.*);
 
-    Carry_Select_Adder #(.WIDTH(WIDTH), .BLOCK(BLOCK))
+    Carry_Select_Adder #(.WIDTH(WIDTH), .SIZE(SIZE))
     u_Carry_Select_Adder(.*);
 
     initial begin

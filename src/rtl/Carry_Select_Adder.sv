@@ -10,7 +10,7 @@
 
 module Carry_Select_Adder #(
     parameter WIDTH = 32,
-    parameter BLOCK = 4     // number of FA in a block
+    parameter SIZE = 4     // number of FA in a block
 ) (
    input  [WIDTH-1:0]   a,
    input  [WIDTH-1:0]   b,
@@ -19,8 +19,8 @@ module Carry_Select_Adder #(
    output               cout
 );
 
-    localparam FULLY_DIV = (WIDTH % BLOCK == 0);
-    localparam NUM_RCA = (WIDTH / BLOCK) + (FULLY_DIV ? 0 : 1);
+    localparam FULLY_DIV = (WIDTH % SIZE == 0);
+    localparam NUM_RCA = (WIDTH / SIZE) + (FULLY_DIV ? 0 : 1);
 
 
     logic [NUM_RCA-1:0] carry;
@@ -30,17 +30,17 @@ module Carry_Select_Adder #(
     genvar i;
     generate
         // First level
-        Ripple_Carry_Adder #(.WIDTH(BLOCK))
-        u_RCA_0(.a(a[BLOCK-1:0]), .b(b[BLOCK-1:0]), .cin(cin), .s(s[BLOCK-1:0]), .cout(carry[0]));
+        Ripple_Carry_Adder #(.WIDTH(SIZE))
+        u_RCA_0(.a(a[SIZE-1:0]), .b(b[SIZE-1:0]), .cin(cin), .s(s[SIZE-1:0]), .cout(carry[0]));
 
         for (i = 1; i < NUM_RCA; i++) begin: gen_RCA
             localparam LAST_LEVEL = (i == NUM_RCA - 1);
-            localparam LO = i * BLOCK;
-            localparam HI = LAST_LEVEL ? WIDTH - 1: (i + 1) * BLOCK - 1;
+            localparam LO = i * SIZE;
+            localparam HI = LAST_LEVEL ? WIDTH - 1: (i + 1) * SIZE - 1;
             localparam LEVEL_WIDTH = HI - LO + 1;
 
-            logic [BLOCK-1:0] sum_0;
-            logic [BLOCK-1:0] sum_1;
+            logic [SIZE-1:0] sum_0;
+            logic [SIZE-1:0] sum_1;
             logic             cout_0;
             logic             cout_1;
 

@@ -10,7 +10,7 @@
 
 module test_Carry_Lookahead_Adder();
 
-    parameter WIDTH = 32;
+    parameter WIDTH = 16;
     parameter SIZE = 4;
 
     logic [WIDTH-1:0]    a;
