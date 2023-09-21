@@ -18,7 +18,7 @@ foreach define $YOSYS_DEFINE {
 read_verilog -sv $repo_root/src/rtl/Full_Adder.sv
 read_verilog -sv $repo_root/src/rtl/Ripple_Carry_Adder.sv
 read_verilog -sv $repo_root/src/rtl/Carry_Select_Adder.sv
-#read_verilog -sv $repo_root/src/rtl/Carry_Lookahead_Adder.sv
+read_verilog -sv $repo_root/src/rtl/Carry_Lookahead_Adder.sv
 read_verilog -sv $repo_root/syn/rtl/top.sv
 hierarchy -top top
 

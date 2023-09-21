@@ -47,9 +47,9 @@ module Carry_Lookahead_Adder #(
     // Depth (Level) of CLA logic
     localparam DEPTH = calc_depth();
 
-    logic          [WIDTH-1:0] c_int;
-    logic [DEPTH:0][WIDTH-1:0] P_int;
-    logic [DEPTH:0][WIDTH-1:0] G_int;
+    logic [WIDTH-1:0] c_int;
+    logic [WIDTH-1:0] P_int[DEPTH:0];
+    logic [WIDTH-1:0] G_int[DEPTH:0];
 
     `ifndef SYNTHESIS
     initial begin
